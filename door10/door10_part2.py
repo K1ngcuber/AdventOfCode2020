@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 numbers = []
 diffs = {
     1:0,
@@ -5,6 +8,7 @@ diffs = {
     3:0,
 }
 last_num = 0
+counts = defaultdict(int, {0: 1})
 
 
 with open("door10_input.txt","r") as f:
@@ -16,6 +20,7 @@ numbers.append(numbers[-1]+3)
 for n in numbers:
     diffs[n-last_num] += 1
     last_num = n
+    counts[n] = counts[n-3]+counts[n-2]+counts[n-1]
 
-print(numbers)
 print(diffs)
+print(counts)
